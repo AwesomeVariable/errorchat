@@ -1,10 +1,11 @@
 import { authService } from "googlebase";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
+  const [err, setErr] = useState("");
   const onChange = (event) => {
     const {
       target: { name, value },
@@ -31,9 +32,10 @@ const Auth = () => {
       }
       console.log(data);
     } catch (error) {
-      console.log(error);
+      setErr(error.message);
     }
   };
+  const toggleAccount = () => setNewAccount((prev) => !prev);
 
   return (
     <div>
@@ -55,7 +57,9 @@ const Auth = () => {
           value={password}
         />
         <input type="submit" value={newAccount ? "Sign Up" : "Login"} />
+        {err}
       </form>
+      <span onClick={toggleAccount}>{newAccount ? "Login" : "Sign Up"}</span>
       <div>
         <button>Login with Google</button>
         <button>Login with Github</button>
