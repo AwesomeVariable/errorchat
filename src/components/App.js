@@ -1,6 +1,15 @@
-import React from "react";
-import AppRouter from "./Router";
+import React, { useState } from "react";
+import AppRouter from "components/Router";
+import { authService } from "googlebase";
+
 function App() {
-  return <AppRouter />;
+  console.log(authService.currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+  return (
+    <>
+      <AppRouter isLoggedIn={isLoggedIn} />
+      <footer>&copy; {new Date().getFullYear()} ErrorChat</footer>
+    </>
+  );
 }
 export default App;
