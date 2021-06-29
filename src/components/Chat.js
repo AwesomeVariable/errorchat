@@ -14,13 +14,46 @@ const Chat = ({ chatObj, isOwner }) => {
     }
   };
   const toggleEdit = () => setEdit((prev) => !prev);
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    console.log(chatObj, newChat);
+    await dbService.doc(`chats/${chatObj.id}`).update({
+      text: newChat,
+    });
+    setEdit(false);
+  };
+  const onChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setNewChat(value);
+  };
   return (
     <div>
-      <h4>{chatObj.text}</h4>
-      {isOwner && (
+      {edit ? (
         <>
-          <button onClick={onDeleteClick}>Delete</button>
-          <button onClick={toggleEdit}>Edit</button>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="Edit Your Chat!"
+              value={newChat}
+              required
+              onChange={onChange}
+            />
+            <input type="submit" value="Update" />
+          </form>
+          <button onClick={toggleEdit}>Cancel</button>
+        </>
+      ) : (
+        <>
+          {" "}
+          <h4>{chatObj.text}</h4>
+          {isOwner && (
+            <>
+              <button onClick={onDeleteClick}>Delete</button>
+              <button onClick={toggleEdit}>Edit</button>
+            </>
+          )}
         </>
       )}
     </div>
