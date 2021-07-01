@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/errorchat/static/css/main.49a9d8a0.chunk.css",
-    "main.js": "/errorchat/static/js/main.12659d3a.chunk.js",
-    "main.js.map": "/errorchat/static/js/main.12659d3a.chunk.js.map",
+    "main.css": "/errorchat/static/css/main.020abdd1.chunk.css",
+    "main.js": "/errorchat/static/js/main.7be3622a.chunk.js",
+    "main.js.map": "/errorchat/static/js/main.7be3622a.chunk.js.map",
     "runtime-main.js": "/errorchat/static/js/runtime-main.2ba46ac5.js",
     "runtime-main.js.map": "/errorchat/static/js/runtime-main.2ba46ac5.js.map",
-    "static/js/2.1631c4ac.chunk.js": "/errorchat/static/js/2.1631c4ac.chunk.js",
-    "static/js/2.1631c4ac.chunk.js.map": "/errorchat/static/js/2.1631c4ac.chunk.js.map",
+    "static/js/2.28ce555a.chunk.js": "/errorchat/static/js/2.28ce555a.chunk.js",
+    "static/js/2.28ce555a.chunk.js.map": "/errorchat/static/js/2.28ce555a.chunk.js.map",
     "index.html": "/errorchat/index.html",
-    "static/css/main.49a9d8a0.chunk.css.map": "/errorchat/static/css/main.49a9d8a0.chunk.css.map",
-    "static/js/2.1631c4ac.chunk.js.LICENSE.txt": "/errorchat/static/js/2.1631c4ac.chunk.js.LICENSE.txt"
+    "static/css/main.020abdd1.chunk.css.map": "/errorchat/static/css/main.020abdd1.chunk.css.map",
+    "static/js/2.28ce555a.chunk.js.LICENSE.txt": "/errorchat/static/js/2.28ce555a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2ba46ac5.js",
-    "static/js/2.1631c4ac.chunk.js",
-    "static/css/main.49a9d8a0.chunk.css",
-    "static/js/main.12659d3a.chunk.js"
+    "static/js/2.28ce555a.chunk.js",
+    "static/css/main.020abdd1.chunk.css",
+    "static/js/main.7be3622a.chunk.js"
   ]
 }
