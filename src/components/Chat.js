@@ -1,4 +1,4 @@
-import { dbService } from "googlebase";
+import { dbService, stService } from "googlebase";
 import React, { useState } from "react";
 
 const Chat = ({ chatObj, isOwner }) => {
@@ -8,9 +8,10 @@ const Chat = ({ chatObj, isOwner }) => {
     const ok = window.confirm(
       "This action can never be recovered. Do you still want to delete chat?"
     );
-    console.log(ok);
+
     if (ok) {
       await dbService.doc(`chats/${chatObj.id}`).delete();
+      await stService.refFromURL(chatObj.attachmentUrl).delete();
     }
   };
   const toggleEdit = () => setEdit((prev) => !prev);
@@ -48,6 +49,9 @@ const Chat = ({ chatObj, isOwner }) => {
         <>
           {" "}
           <h4>{chatObj.text}</h4>
+          {chatObj.attachmentUrl && (
+            <img src={chatObj.attachmentUrl} width="100px" height="100px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete</button>
