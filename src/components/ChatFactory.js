@@ -8,10 +8,11 @@ const ChatFactory = ({ userObj }) => {
   const [chat, setChat] = useState("");
   const [fileUrl, setfileUrl] = useState("");
   const onSubmit = async (event) => {
+    event.preventDefault();
     if (chat === "") {
       return;
     }
-    event.preventDefault();
+
     let attachmentUrl = "";
     if (fileUrl !== "") {
       const fileRef = stService.ref().child(`${userObj.uid}/${uuidv4()}`);
@@ -58,7 +59,7 @@ const ChatFactory = ({ userObj }) => {
           onChange={onChange}
           type="text"
           placeholder="What's on your mind?"
-          maxLength={160}
+          maxLength={150}
         />
         <input type="submit" value="&rarr;" className="factoryInput__arrow" />
       </div>
