@@ -1,5 +1,7 @@
 import { dbService, stService } from "googlebase";
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = ({ chatObj, isOwner }) => {
   const [edit, setEdit] = useState(false);
@@ -30,33 +32,39 @@ const Chat = ({ chatObj, isOwner }) => {
     setNewChat(value);
   };
   return (
-    <div>
+    <div className="nweet">
       {edit ? (
         <>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="container nweetEdit">
             <input
               type="text"
               placeholder="Edit Your Chat!"
               value={newChat}
               required
+              autoFocus
               onChange={onChange}
+              className="formInput"
             />
-            <input type="submit" value="Update" />
+            <input type="submit" className="formBtn" value="Update" />
           </form>
-          <button onClick={toggleEdit}>Cancel</button>
+          <button onClick={toggleEdit} className="formBtn cancelBtn">
+            Cancel
+          </button>
         </>
       ) : (
         <>
           {" "}
           <h4>{chatObj.text}</h4>
-          {chatObj.attachmentUrl && (
-            <img src={chatObj.attachmentUrl} width="100px" height="100px" />
-          )}
+          {chatObj.attachmentUrl && <img src={chatObj.attachmentUrl} />}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete</button>
-              <button onClick={toggleEdit}>Edit</button>
-            </>
+            <div class="nweet__actions">
+              <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEdit}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
           )}
         </>
       )}

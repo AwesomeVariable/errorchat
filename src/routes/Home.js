@@ -1,7 +1,6 @@
 import { dbService, stService } from "googlebase";
 import React, { useEffect, useState } from "react";
 import Chat from "components/Chat.js";
-
 import ChatFactory from "components/ChatFactory";
 
 const Home = ({ userObj }) => {
@@ -21,9 +20,9 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <ChatFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {chats.map((chat) => (
           <Chat
             key={chat.id}

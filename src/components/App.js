@@ -39,7 +39,9 @@ function App() {
       ) : (
         <h2>Loading......</h2>
       )}
-      <footer>&copy; {new Date().getFullYear()} ErrorChat</footer>
+      <footer className="copyright-margin">
+        &copy; {new Date().getFullYear()} ErrorChat
+      </footer>
     </>
   );
 }

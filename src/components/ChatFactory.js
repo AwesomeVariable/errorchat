@@ -1,11 +1,16 @@
 import { dbService, stService } from "googlebase";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ChatFactory = ({ userObj }) => {
   const [chat, setChat] = useState("");
   const [fileUrl, setfileUrl] = useState("");
   const onSubmit = async (event) => {
+    if (chat === "") {
+      return;
+    }
     event.preventDefault();
     let attachmentUrl = "";
     if (fileUrl !== "") {
@@ -43,23 +48,47 @@ const ChatFactory = ({ userObj }) => {
     };
     fileReader.readAsDataURL(oneFile);
   };
-  const onClearPhotoClick = () => setfileUrl(null);
+  const onClearPhotoClick = () => setfileUrl("");
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="factoryForm">
+      <div className="factoryInput__container">
+        <input
+          className="factoryInput__input"
+          value={chat}
+          onChange={onChange}
+          type="text"
+          placeholder="What's on your mind?"
+          maxLength={160}
+        />
+        <input type="submit" value="&rarr;" className="factoryInput__arrow" />
+      </div>
+      <label for="attach-file" className="factoryInput__label">
+        <span>Add photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+      </label>
+
       <input
-        value={chat}
-        onChange={onChange}
-        type="text"
-        placeholder="What's on your mind?"
-        maxLength={150}
+        id="attach-file"
+        type="file"
+        accept="image/*"
+        onChange={onFileChange}
+        style={{
+          opacity: 0,
+        }}
       />
-      <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="Chat" />
-      <a href="www.awesomevariable.github.io/paint-js">Paint</a>
+
       {fileUrl && (
-        <div>
-          <img src={fileUrl} width="50px" height="50px" />
-          <button onClick={onClearPhotoClick}>Cancel</button>
+        <div className="factoryForm__attachment">
+          <img
+            src={fileUrl}
+            style={{
+              backgroundImage: fileUrl,
+            }}
+          />
+          <div className="factoryForm__clear" onClick={onClearPhotoClick}>
+            <span>Remove</span>
+            <FontAwesomeIcon icon={faTimes} />
+          </div>
         </div>
       )}
     </form>

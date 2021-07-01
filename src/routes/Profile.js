@@ -23,17 +23,30 @@ export default ({ loadUser, userObj }) => {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <div className="container">
+      <form onSubmit={onSubmit} className="profileForm">
         <input
-          type="text"
           onChange={onChange}
-          placeholder="What's your name?"
+          type="text"
+          autoFocus
+          placeholder="Display name"
           value={newName}
+          className="formInput"
         />
-        <input type="submit" value="Update" />
+        <input
+          type="submit"
+          value="Update"
+          className="formBtn"
+          style={{
+            marginTop: 10,
+            backgroundColor: "black",
+            color: "white",
+          }}
+        />
       </form>
-      <button onClick={onLogOutClick}>Log Out</button>
-    </>
+      <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+        Log Out
+      </span>
+    </div>
   );
 };

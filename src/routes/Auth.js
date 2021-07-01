@@ -1,6 +1,9 @@
 import { authService, firebaseInstance } from "googlebase";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AuthForm from "components/AuthForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+
 const Auth = () => {
   const onSocialClick = async (event) => {
     const {
@@ -18,14 +21,16 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <div className="authContainer">
+      <h1 className="errorchat-title">Welcome to ErrorChat</h1>
       <AuthForm />
-      <div>
-        <button onClick={onSocialClick} name="google">
-          Login with Google
+      <div className="authBtns">
+        <button onClick={onSocialClick} name="google" className="authBtn">
+          Login with Google <FontAwesomeIcon icon={faGoogle} />
         </button>
-        <button onClick={onSocialClick} name="github">
-          Login with Github
+
+        <button onClick={onSocialClick} name="github" className="authBtn">
+          Login with Github <FontAwesomeIcon icon={faGithub} />
         </button>
       </div>
     </div>
