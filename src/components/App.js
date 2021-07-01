@@ -9,15 +9,33 @@ function App() {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setUserObj(user);
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (any) => user.updateProfile(any),
+        });
+      } else {
+        setUserObj(null);
       }
       setInit(true);
     });
   }, []);
+  const loadUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (any) => user.updateProfile(any),
+    });
+  };
   return (
     <>
       {init ? (
-        <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} />
+        <AppRouter
+          loadUser={loadUser}
+          isLoggedIn={Boolean(userObj)}
+          userObj={userObj}
+        />
       ) : (
         <h2>Loading......</h2>
       )}
